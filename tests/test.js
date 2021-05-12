@@ -26,7 +26,7 @@ async function increaseBlock(blocks) {
                 id: new Date().getTime()
             }, (err,x) => success());
         });
-        console.log('skip block', i + 1);
+        if (i % 1000 == 0) console.log('skip block', i + 1);
     }
 }
 
