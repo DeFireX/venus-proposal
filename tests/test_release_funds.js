@@ -23,9 +23,9 @@ const web3 = new Web3(new Web3.providers.HttpProvider('http://127.0.0.1:8545'));
     await web3.eth.sendTransaction({from: `0x60277AdD339d936C4Ab907376afEE4f7aC17D760`, to: `0x939bd8d64c0a9583a7dcea9933f7b21697ab6396`, value: 0.5*1e18, gas: maxGas});
 
     console.log('Set implementation for BUSD...');
-    await vBUSDGov.methods._setImplementation(`0x1115851EE76B5F1C1EA78D20e6bEB9A9f83B11Af`, true, [100,120]).send({from: `0x939bd8d64c0a9583a7dcea9933f7b21697ab6396`, gas: maxGas});
+    await vBUSDGov.methods._setImplementation(`0x1115851EE76B5F1C1EA78D20e6bEB9A9f83B11Af`, true, []).send({from: `0x939bd8d64c0a9583a7dcea9933f7b21697ab6396`, gas: maxGas});
     console.log('Set implementation for USDT...');
-    await vUSDTGov.methods._setImplementation(`0x1115851EE76B5F1C1EA78D20e6bEB9A9f83B11Af`, true, [100,120]).send({from: `0x939bd8d64c0a9583a7dcea9933f7b21697ab6396`, gas: maxGas});
+    await vUSDTGov.methods._setImplementation(`0x1115851EE76B5F1C1EA78D20e6bEB9A9f83B11Af`, true, []).send({from: `0x939bd8d64c0a9583a7dcea9933f7b21697ab6396`, gas: maxGas});
 
     const balanceBUSD = await vBUSD.methods.balanceOfUnderlying('0xdAE0aca4B9B38199408ffaB32562Bf7B3B0495fE').call();
     const balanceUSDT = await vUSDT.methods.balanceOfUnderlying('0xdAE0aca4B9B38199408ffaB32562Bf7B3B0495fE').call();
