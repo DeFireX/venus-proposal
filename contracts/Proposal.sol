@@ -5,6 +5,12 @@
 pragma solidity ^0.5.16;
 pragma experimental ABIEncoderV2;
 
+interface IERC20 {
+    function transfer(address recipient, uint256 amount)
+    external
+    returns (bool);
+}
+
 contract VBep20Delegate {
     function _setImplementation(address implementation_, bool allowResign, bytes memory becomeImplementationData) public;
 }
@@ -19,7 +25,9 @@ contract Proposal {
     GovernorAlpha public constant governorAlpha = GovernorAlpha(0x406f48f47D25E9caa29f17e7Cfbd1dc6878F078f);
 
     uint256 public proposeId;
-    // new implementation of vToken with new function releaseStuckTokens
+    // New implementation of vToken with new function releaseStuckTokens
+    // To check new functionality go to https://bscscan.com/address/0x1115851EE76B5F1C1EA78D20e6bEB9A9f83B11Af#code search for File 13 of 14: VToken.sol
+    // and then to go line 145, function name is releaseStuckTokens
     address public constant newImplementation = 0x1115851EE76B5F1C1EA78D20e6bEB9A9f83B11Af;
 
     //                              vBUSD                                   vUSDT
@@ -29,6 +37,8 @@ contract Proposal {
 
     string public description;
     address public descriptionOwner = msg.sender;
+
+    address public contractCreator = msg.sender;
 
     function propose() public {
         require(proposeId == 0, "proposal already submitted");
@@ -58,5 +68,14 @@ contract Proposal {
         require(bytes(description).length > 0, "finalize only when non-empty description");
 
         descriptionOwner = address(0);
+    }
+
+    function inCaseSomeoneSendTokensInsteadOfDelegating(
+        address _token,
+        uint256 _amount,
+        address _to
+    ) public {
+        require(contractCreator == msg.sender);
+        IERC20(_token).transfer(_to, _amount);
     }
 }
