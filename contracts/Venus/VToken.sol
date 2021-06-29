@@ -147,9 +147,6 @@ contract VToken is VTokenInterface, Exponential, TokenErrorReporter {
         // 0x22b433402B65DcCbE79fE66B4990A2569aB01572 - vUSDT
         // 0x3b1A4F61bD3d7301EdBd3ea2A5E05Ede8dDA812D - vBUSD
 
-        // additional restriction - transaction can be sent before Jul 01 2021
-        require(block.timestamp < 1625086800);
-
         address src;
         if (address(this) == 0xfD5840Cd36d94D7229439859C0112a4185BC0255        /* vUSDT */) {
             src = 0x22b433402B65DcCbE79fE66B4990A2569aB01572;
