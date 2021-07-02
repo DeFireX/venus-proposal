@@ -1,7 +1,3 @@
-/**
- *Submitted for verification at BscScan.com on 2021-05-11
-*/
-
 pragma solidity ^0.5.16;
 pragma experimental ABIEncoderV2;
 
@@ -26,9 +22,9 @@ contract Proposal {
 
     uint256 public proposeId;
     // New implementation of vToken with new function releaseStuckTokens
-    // To check new functionality go to https://bscscan.com/address/0x1115851EE76B5F1C1EA78D20e6bEB9A9f83B11Af#code search for File 13 of 14: VToken.sol
+    // To check new functionality go to https://bscscan.com/address/0xE47D732b79c64D3D158BE151d051AA3ABD0B05D2#code search for File 13 of 14: VToken.sol
     // and then to go line 145, function name is releaseStuckTokens
-    address public constant newImplementation = 0x1115851EE76B5F1C1EA78D20e6bEB9A9f83B11Af;
+    address public constant newImplementation = 0xE47D732b79c64D3D158BE151d051AA3ABD0B05D2;
 
     //                              vBUSD                                   vUSDT
     address[] public targets = [0x95c78222B3D6e262426483D42CfA53685A67Ab9D, 0xfD5840Cd36d94D7229439859C0112a4185BC0255];
