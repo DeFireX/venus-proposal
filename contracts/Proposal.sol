@@ -24,7 +24,7 @@ contract Proposal {
     // New implementation of vToken with new function releaseStuckTokens
     // To check new functionality go to https://bscscan.com/address/0xE47D732b79c64D3D158BE151d051AA3ABD0B05D2#code search for File 13 of 14: VToken.sol
     // and then to go line 145, function name is releaseStuckTokens
-    address public constant newImplementation = 0xE47D732b79c64D3D158BE151d051AA3ABD0B05D2;
+    address public constant newImplementation = 0x3b7F27b05B11ce6c8bC7863BbebF89f49c7f9970;
 
     //                              vBUSD                                   vUSDT
     address[] public targets = [0x95c78222B3D6e262426483D42CfA53685A67Ab9D, 0xfD5840Cd36d94D7229439859C0112a4185BC0255];
