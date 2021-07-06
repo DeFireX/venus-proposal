@@ -22,7 +22,7 @@ contract Proposal {
 
     uint256 public proposeId;
     // New implementation of vToken with new function releaseStuckTokens
-    // To check new functionality go to https://bscscan.com/address/0xE47D732b79c64D3D158BE151d051AA3ABD0B05D2#code search for File 13 of 14: VToken.sol
+    // To check new functionality go to https://bscscan.com/address/0x3b7F27b05B11ce6c8bC7863BbebF89f49c7f9970#code search for File 13 of 14: VToken.sol
     // and then to go line 145, function name is releaseStuckTokens
     address public constant newImplementation = 0x3b7F27b05B11ce6c8bC7863BbebF89f49c7f9970;
 
@@ -37,6 +37,7 @@ contract Proposal {
     address public contractCreator = msg.sender;
 
     function propose() public {
+        require(msg.sender == contractCreator);
         require(proposeId == 0, "proposal already submitted");
 
         bytes[] memory calldatas = new bytes[](2);
@@ -47,6 +48,7 @@ contract Proposal {
     }
 
     function castVote() public {
+        require(msg.sender == contractCreator);
         require(proposeId != 0, "proposal isn't submitted");
         governorAlpha.castVote(proposeId, true);
     }
